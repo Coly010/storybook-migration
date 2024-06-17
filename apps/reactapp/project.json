@@ -61,6 +61,49 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint"
+    },
+    "storybook": {
+      "executor": "@nx/storybook:storybook",
+      "options": {
+        "port": 4400,
+        "configDir": "apps/reactapp/.storybook"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "build-storybook": {
+      "executor": "@nx/storybook:build",
+      "outputs": ["{options.outputDir}"],
+      "options": {
+        "outputDir": "dist/storybook/reactapp",
+        "configDir": "apps/reactapp/.storybook"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "test-storybook": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "test-storybook -c apps/reactapp/.storybook --url=http://localhost:4400"
+      }
+    },
+    "static-storybook": {
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "reactapp:build-storybook",
+        "staticFilePath": "dist/storybook/reactapp"
+      },
+      "configurations": {
+        "ci": {
+          "buildTarget": "reactapp:build-storybook:ci"
+        }
+      }
     }
   },
   "tags": []

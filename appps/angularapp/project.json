@@ -76,6 +76,35 @@
       "options": {
         "jestConfig": "appps/angularapp/jest.config.ts"
       }
+    },
+    "storybook": {
+      "executor": "@storybook/angular:start-storybook",
+      "options": {
+        "port": 4400,
+        "configDir": "appps/angularapp/.storybook",
+        "browserTarget": "angularapp:build",
+        "compodoc": false
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "build-storybook": {
+      "executor": "@storybook/angular:build-storybook",
+      "outputs": ["{options.outputDir}"],
+      "options": {
+        "outputDir": "dist/storybook/angularapp",
+        "configDir": "appps/angularapp/.storybook",
+        "browserTarget": "angularapp:build",
+        "compodoc": false
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
     }
   }
 }
