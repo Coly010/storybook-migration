@@ -1,0 +1,47 @@
+{
+  "name": "remixapp",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/remixapp",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/remix:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/remixapp"
+      }
+    },
+    "serve": {
+      "executor": "@nx/remix:serve",
+      "options": {
+        "command": "npx remix-serve build/index.js",
+        "manual": true,
+        "port": 4200
+      }
+    },
+    "start": {
+      "dependsOn": ["build"],
+      "command": "remix-serve build/index.js",
+      "options": {
+        "cwd": "apps/remixapp"
+      }
+    },
+    "typecheck": {
+      "command": "tsc --project tsconfig.app.json",
+      "options": {
+        "cwd": "apps/remixapp"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "remixapp:build",
+        "port": 4200
+      }
+    }
+  }
+}

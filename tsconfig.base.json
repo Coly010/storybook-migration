@@ -1,0 +1,28 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2020", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@storybook-migration/angularlib": ["libs/angularlib/src/index.ts"],
+      "@storybook-migration/libs/remixlib": ["libs/remixlib/src/index.ts"],
+      "@storybook-migration/libs/remixlib/server": [
+        "libs/remixlib/src/server.ts"
+      ],
+      "@storybook-migration/reactlib": ["libs/reactlib/src/index.ts"],
+      "@storybook-migration/vuelib": ["libs/vuelib/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}
